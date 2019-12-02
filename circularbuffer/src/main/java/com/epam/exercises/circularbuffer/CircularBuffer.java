@@ -5,7 +5,11 @@ import java.util.List;
 
 public class  CircularBuffer <T> implements Buffer <T> {
 
-    public CircularBuffer() {
+    private int bufferLimit;
+
+
+    public CircularBuffer(int bufferLimit) {
+        this.bufferLimit = bufferLimit;
     }
 
     @Override
