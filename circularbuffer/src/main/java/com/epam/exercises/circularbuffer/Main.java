@@ -1,4 +1,4 @@
-package com.mentoring;
+package com.epam.exercises.circularbuffer;
 
 public class Main {
     public static void main(String[] args) {
