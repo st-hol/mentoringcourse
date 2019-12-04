@@ -10,11 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>calculatorrefactoring</artifactId>
-    
+
+    <name>calculatorrefactoring</name>
+    <url>http://www.example.com</url>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.9</maven.compiler.source>
-        <maven.compiler.target>1.9</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
 
