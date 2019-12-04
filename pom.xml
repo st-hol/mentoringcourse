@@ -11,7 +11,6 @@
 
     <modules>
         <module>circularbuffer</module>
-        <module>calculatorrefactoring</module>
     </modules>
 
     <dependencies>
