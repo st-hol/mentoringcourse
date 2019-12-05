@@ -12,7 +12,6 @@ import java.util.Arrays;
 
 public class Calculator {
     public static void main(String[] args) throws IOException {
-
         CalculatorService calculatorService = new CalculatorService();
         printLine(ENTER_EXPRESSION);
         String inputExpression = readLine();
@@ -23,10 +22,10 @@ public class Calculator {
         String[] numbers = extractOperands(inputExpression);
         printLine(Arrays.toString(numbers));
 
-        int[] numbersConverted = convertStringArrayToIntArray(numbers);
-        printLine(Arrays.toString(numbersConverted));
+        int[] integerNumbers = convertStringArrayToIntArray(numbers);
+        printLine(Arrays.toString(integerNumbers));
 
-        int result = calculatorService.calculate(operations, numbersConverted);
+        int result = calculatorService.calculate(operations, integerNumbers);
         printLine(result);
     }
 
