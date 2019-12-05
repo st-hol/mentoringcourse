@@ -2,6 +2,7 @@ package com.epam.exercises.circularbuffer;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -56,18 +57,23 @@ public class CircularBuffer<T> implements Buffer<T> {
     }
 
     /**
-     * https://stackoverflow.com/questions/18581002/how-to-create-a-generic-array
+     * @link https://stackoverflow.com/questions/18581002/how-to-create-a-generic-array
      *
      */
     @Override
     @SuppressWarnings("unchecked")
     public T[] toArray() {
-        return asList().toArray(
+        List<T> list = asList();
+        Collections.reverse(list);
+        return list.toArray(
                 (T[]) Array.newInstance(Arrays.stream(buffer)
                         .findAny()
                         .orElseThrow(() -> new BufferIllegalStateException(BUFFER_IS_EMPTY))
-                        .getClass(), buffer.length));
-//        return asList().toArray(((T[])new Object[buffer.length]));
+                        .getClass(), Math.toIntExact(countElements())));
+    }
+
+    private long countElements() {
+        return Arrays.stream(buffer).filter(Objects::nonNull).count();
     }
 
     @Override
@@ -77,9 +83,6 @@ public class CircularBuffer<T> implements Buffer<T> {
 
     @Override
     public void addAll(List<? extends T> toAdd) {
-//        for (T element : toAdd){
-//            this.put(element);
-//        }
         toAdd.forEach(this::put);
     }
 
@@ -105,12 +108,6 @@ public class CircularBuffer<T> implements Buffer<T> {
         writePosition = incrementPosition(writePosition);
     }
 
-    /**
-     * util
-     *
-     * @param currentIndex
-     * @return
-     */
     private int incrementPosition(int currentIndex) {
         return (currentIndex + 1) % buffer.length;
     }

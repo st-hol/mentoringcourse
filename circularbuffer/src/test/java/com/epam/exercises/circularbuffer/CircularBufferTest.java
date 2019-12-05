@@ -1,17 +1,22 @@
 package com.epam.exercises.circularbuffer;
 
-import com.epam.exercises.circularbuffer.exception.BufferIllegalStateException;
-import com.google.common.collect.Ordering;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.epam.exercises.circularbuffer.exception.BufferIllegalStateException;
+import com.google.common.collect.Ordering;
 
 public class CircularBufferTest {
 
@@ -40,6 +45,8 @@ public class CircularBufferTest {
     public void givenFilledBuffer_whenGet_thenReturnOldest() {
         fillBufferToLimitWithValues(1, 2, 3, 4, 5, 6, 7);
         assertEquals(1, circularBuffer.get());
+        assertEquals(2, circularBuffer.get());
+        assertNotEquals(4, circularBuffer.get());
     }
 
     @Test
@@ -57,15 +64,14 @@ public class CircularBufferTest {
 
     @Test
     public void givenValues_whenToArray_thenReturnArrayOfType() {
-        fillBufferToLimitWithValues(1, 2, 3, 4, 5, 6, 7);
+        fillBufferToLimitWithValues(1, 2, 3);
 
         Integer[] returnArray = circularBuffer.toArray();
 
-        assertEquals(1, returnArray[0]);
+        assertEquals(3, returnArray.length);
+        assertEquals(3, returnArray[0]);
         assertEquals(2, returnArray[1]);
-        assertEquals(3, returnArray[2]);
-        //..
-        assertEquals(7, returnArray[6]);
+        assertEquals(1, returnArray[2]);
     }
 
     @Test
@@ -77,7 +83,9 @@ public class CircularBufferTest {
         assertEquals(1, returnList.get(0));
         assertEquals(2, returnList.get(1));
         assertEquals(3, returnList.get(2));
-        //..
+        assertEquals(4, returnList.get(3));
+        assertEquals(5, returnList.get(4));
+        assertEquals(6, returnList.get(5));
         assertEquals(7, returnList.get(6));
     }
 
@@ -122,7 +130,7 @@ public class CircularBufferTest {
     @Test
     public void givenNaturalComparator_whenSort_thenIsOrdered() {
         Comparator<Integer> comparator = Integer::compareTo;
-        fillBufferToLimitWithValues(1, 2, 3);
+        fillBufferToLimitWithValues(1, 3, 2);
         circularBuffer.sort(comparator);
         assertTrue(Ordering.natural().isOrdered(circularBuffer.asList()));
     }
