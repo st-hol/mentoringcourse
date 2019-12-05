@@ -10,6 +10,7 @@ public interface Constants {
         String MINUS_OPERATION = "-";
     }
 
+
     interface Regexes {
         String OPERATIONS_REGEX = "[0-9]+";
         String OPERANDS_REGEX = "[\\+\\-\\*\\/]";
