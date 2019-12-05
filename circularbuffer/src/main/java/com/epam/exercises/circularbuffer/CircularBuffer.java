@@ -1,7 +1,5 @@
 package com.epam.exercises.circularbuffer;
 
-import com.epam.exercises.circularbuffer.exception.BufferIllegalStateException;
-
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -9,15 +7,18 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import com.epam.exercises.circularbuffer.exception.BufferIllegalStateException;
+
 public class CircularBuffer<T> implements Buffer<T> {
 
-    private static final String BUFFER_IS_FULL = "The put method throws RUNTIME exception if the buffer is full";
-    private static final String BUFFER_IS_EMPTY = "The get method throws RUNTIME exception if the buffer is empty.";
+    private static final String BUFFER_IS_FULL = "Buffer is full.";
+    private static final String BUFFER_IS_EMPTY = "Buffer is empty.";
 
     private int readPosition;
     private int writePosition;
     private T[] buffer;
 
+    @SuppressWarnings("unchecked")
     public CircularBuffer(int bufferLimit) {
         this.buffer = (T[]) new Object[bufferLimit];
     }
@@ -57,9 +58,9 @@ public class CircularBuffer<T> implements Buffer<T> {
     /**
      * https://stackoverflow.com/questions/18581002/how-to-create-a-generic-array
      *
-     * @return
      */
     @Override
+    @SuppressWarnings("unchecked")
     public T[] toArray() {
         return asList().toArray(
                 (T[]) Array.newInstance(Arrays.stream(buffer)
