@@ -15,7 +15,7 @@ public class CalculatorUtils {
 
     public static String readLine() throws IOException {
         String line = new BufferedReader(new InputStreamReader(System.in)).readLine();
-        System.out.println(line);
+        printLine(line);
         return line;
     }
 
