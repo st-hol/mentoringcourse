@@ -1,10 +1,5 @@
 package com.epam.exercises.calculatorrefactoring.afterrefactoring;
 
-import static com.epam.exercises.calculatorrefactoring.afterrefactoring.CalculatorUtils.convertStringArrayToIntArray;
-import static com.epam.exercises.calculatorrefactoring.afterrefactoring.CalculatorUtils.extractOperands;
-import static com.epam.exercises.calculatorrefactoring.afterrefactoring.CalculatorUtils.extractOperations;
-import static com.epam.exercises.calculatorrefactoring.afterrefactoring.CalculatorUtils.printLine;
-import static com.epam.exercises.calculatorrefactoring.afterrefactoring.CalculatorUtils.readLine;
 import static com.epam.exercises.calculatorrefactoring.afterrefactoring.Constants.ENTER_EXPRESSION;
 
 import java.io.IOException;
@@ -12,21 +7,22 @@ import java.util.Arrays;
 
 public class Calculator {
     public static void main(String[] args) throws IOException {
+        UtilService utilService = new UtilService();
         CalculatorService calculatorService = new CalculatorService();
-        printLine(ENTER_EXPRESSION);
-        String inputExpression = readLine();
+        System.out.println(ENTER_EXPRESSION);
+        String inputExpression = utilService.readLine();
 
-        String[] operations = extractOperations(inputExpression);
-        printLine(Arrays.toString(operations));
+        String[] operations = utilService.extractOperations(inputExpression);
+        System.out.println(Arrays.toString(operations));
 
-        String[] numbers = extractOperands(inputExpression);
-        printLine(Arrays.toString(numbers));
+        String[] numbers = utilService.extractOperands(inputExpression);
+        System.out.println(Arrays.toString(numbers));
 
-        int[] integerNumbers = convertStringArrayToIntArray(numbers);
-        printLine(Arrays.toString(integerNumbers));
+        int[] integerNumbers = utilService.convertStringArrayToIntArray(numbers);
+        System.out.println(Arrays.toString(integerNumbers));
 
         int result = calculatorService.calculate(operations, integerNumbers);
-        printLine(result);
+        System.out.println(result);
     }
 
 }

@@ -2,16 +2,17 @@ package com.epam.exercises.calculatorrefactoring.afterrefactoring;
 
 public interface Constants {
     String ENTER_EXPRESSION = "Enter an expression: ";
+    int RESULT_POSITION = 0;
 
-    interface Operations {
-        String MULTIPLY_OPERATION = "*";
-        String DIVIDE_OPERATION = "/";
-        String PLUS_OPERATION = "+";
-        String MINUS_OPERATION = "-";
+    interface Operation {
+        String MULTIPLY = "*";
+        String DIVIDE = "/";
+        String PLUS = "+";
+        String MINUS = "-";
     }
 
-    interface Regexes {
-        String OPERATIONS_REGEX = "[0-9]+";
-        String OPERANDS_REGEX = "[\\+\\-\\*\\/]";
+    interface Regex {
+        String OPERATIONS = "[0-9]+";
+        String OPERANDS = "[\\+\\-\\*\\/]";
     }
 }

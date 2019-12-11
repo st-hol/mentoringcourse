@@ -1,9 +1,10 @@
 package com.epam.exercises.calculatorrefactoring.afterrefactoring;
 
-import static com.epam.exercises.calculatorrefactoring.afterrefactoring.Constants.Operations.DIVIDE_OPERATION;
-import static com.epam.exercises.calculatorrefactoring.afterrefactoring.Constants.Operations.MINUS_OPERATION;
-import static com.epam.exercises.calculatorrefactoring.afterrefactoring.Constants.Operations.MULTIPLY_OPERATION;
-import static com.epam.exercises.calculatorrefactoring.afterrefactoring.Constants.Operations.PLUS_OPERATION;
+import static com.epam.exercises.calculatorrefactoring.afterrefactoring.Constants.Operation.DIVIDE;
+import static com.epam.exercises.calculatorrefactoring.afterrefactoring.Constants.Operation.MINUS;
+import static com.epam.exercises.calculatorrefactoring.afterrefactoring.Constants.Operation.MULTIPLY;
+import static com.epam.exercises.calculatorrefactoring.afterrefactoring.Constants.Operation.PLUS;
+import static com.epam.exercises.calculatorrefactoring.afterrefactoring.Constants.RESULT_POSITION;
 
 import java.util.Map;
 import java.util.Set;
@@ -14,21 +15,21 @@ import com.google.common.collect.ImmutableSet;
 public class CalculatorService {
 
     private static final Set<String> HIGHER_PRIORITY_OPERATIONS = ImmutableSet.of(
-            MULTIPLY_OPERATION, DIVIDE_OPERATION);
+            MULTIPLY, DIVIDE);
     private static final Set<String> LOWER_PRIORITY_OPERATIONS = ImmutableSet.of(
-            PLUS_OPERATION, MINUS_OPERATION);
+            PLUS, MINUS);
 
     private static final Map<String, MathOperation> calculatorActions =
             ImmutableMap.of(
-                    MULTIPLY_OPERATION, (x, y) -> x * y,
-                    DIVIDE_OPERATION, Integer::divideUnsigned,
-                    PLUS_OPERATION, Integer::sum,
-                    MINUS_OPERATION, (x, y) -> x - y);
+                    MULTIPLY, (x, y) -> x * y,
+                    DIVIDE, Integer::divideUnsigned,
+                    PLUS, Integer::sum,
+                    MINUS, (x, y) -> x - y);
 
     public int calculate(String[] operations, int[] numbers) {
         applyHigherPriorityOperations(operations, numbers);
         applyLowerPriorityOperations(operations, numbers);
-        return numbers[0];
+        return numbers[RESULT_POSITION];
     }
 
     private void applyHigherPriorityOperations(String[] operations, int[] numbers) {
