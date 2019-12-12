@@ -11,9 +11,7 @@ import java.util.Arrays;
 public class UtilService {
 
     public String readLine() throws IOException {
-        String line = new BufferedReader(new InputStreamReader(System.in)).readLine();
-        System.out.println(line);
-        return line;
+        return new BufferedReader(new InputStreamReader(System.in)).readLine();
     }
 
     public int[] convertStringArrayToIntArray(String[] stringNumbersArray) {

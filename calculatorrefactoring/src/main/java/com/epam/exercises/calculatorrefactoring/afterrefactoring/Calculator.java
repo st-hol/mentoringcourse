@@ -11,6 +11,7 @@ public class Calculator {
         CalculatorService calculatorService = new CalculatorService();
         System.out.println(ENTER_EXPRESSION);
         String inputExpression = utilService.readLine();
+        System.out.println(inputExpression);
 
         String[] operations = utilService.extractOperations(inputExpression);
         System.out.println(Arrays.toString(operations));
