@@ -10,8 +10,16 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>calculatorrefactoring</module>
         <module>circularbuffer</module>
+        <module>hashcracker</module>
     </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.9</maven.compiler.source>
+        <maven.compiler.target>1.9</maven.compiler.target>
+    </properties>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
@@ -60,11 +68,19 @@
 
 
         <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <!--        <dependency>-->
+        <!--            <groupId>com.google.guava</groupId>-->
+        <!--            <artifactId>guava</artifactId>-->
+        <!--            <version>26.0-jre</version>-->
+        <!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>26.0-jre</version>
+            <version>21.0</version>
         </dependency>
+
     </dependencies>
 
 
