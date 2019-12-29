@@ -11,6 +11,7 @@
 
     <modules>
         <module>circularbuffer</module>
+        <module>clean-code-functions</module>
     </modules>
 
     <dependencies>
