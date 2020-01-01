@@ -2,6 +2,7 @@ package com.epam.training.sportsbetting.domain;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,5 +30,23 @@ public abstract class SportEvent {
                 ", bets=" + bets +
                 ", result=" + result +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SportEvent that = (SportEvent) o;
+        return Objects.equals(title, that.title) &&
+                Objects.equals(startDate, that.startDate) &&
+                Objects.equals(endDate, that.endDate);
+                //&&
+//                Objects.equals(bets, that.bets) &&
+ //               Objects.equals(result, that.result);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, startDate, endDate, bets, result);
     }
 }
