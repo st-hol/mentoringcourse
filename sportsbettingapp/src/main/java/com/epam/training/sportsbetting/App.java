@@ -66,8 +66,8 @@ public class App {
     }
 
     private void gatherResults() {
-        Result result = applicationService.generateResult(applicationService.getSportEventsData());
-        applicationService.calculateResults(result, userWagers, player);
+        applicationService.generateResult(applicationService.getSportEventsData(),
+                userWagers, player);
         applicationController.printResults(player, userWagers);
         BigDecimal totalWonSum = applicationService.calculateTotalWonSum(startBalance, player.getBalance());
         applicationController.printLine(String.format(YOU_HAVE_WON, totalWonSum));

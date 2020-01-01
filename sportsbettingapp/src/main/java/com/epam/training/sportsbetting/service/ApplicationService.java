@@ -15,6 +15,8 @@ import com.epam.training.sportsbetting.domain.Result;
 import com.epam.training.sportsbetting.domain.SportEvent;
 import com.epam.training.sportsbetting.domain.Wager;
 import com.epam.training.sportsbetting.domain.user.Player;
+import lombok.Setter;
+
 
 public class ApplicationService {
 
@@ -65,7 +67,7 @@ public class ApplicationService {
      * @param sportEvents
      * @return
      */
-    public Result generateResult(List<SportEvent> sportEvents) {
+    public Result generateResult(List<SportEvent> sportEvents, List<Wager> userWagers, Player player) {
         Result result = new Result();
         List<Outcome> winnerOutcomes = new ArrayList<>();
 
@@ -76,6 +78,7 @@ public class ApplicationService {
             }
         }
         result.setWinnerOutcomes(winnerOutcomes);
+        calculateResults(result, userWagers, player);
         return result;
     }
 
@@ -87,7 +90,7 @@ public class ApplicationService {
         return random.nextInt(max);
     }
 
-    public void calculateResults(Result result, List<Wager> userWagers, Player player) {
+    private void calculateResults(Result result, List<Wager> userWagers, Player player) {
         List<Outcome> winnerOutcomes = result.getWinnerOutcomes();
         userWagers.forEach(userWager -> {
             userWager.getOutcomeOdd().getOutcome()
@@ -112,4 +115,11 @@ public class ApplicationService {
         return winnerOutcomes.contains(userWager.getOutcomeOdd().getOutcome());
     }
 
+    public void setBettingDataPoolHolder(BettingDataPoolHolder bettingDataPoolHolder) {
+        this.bettingDataPoolHolder = bettingDataPoolHolder;
+    }
+
+    public void setRandom(Random random) {
+        this.random = random;
+    }
 }

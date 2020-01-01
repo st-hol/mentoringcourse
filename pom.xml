@@ -19,14 +19,8 @@
         <module>calculatorrefactoring</module>
         <module>circularbuffer</module>
         <module>sportsbettingapp</module>
-        <module>hashcracker</module>
+<!--        <module>hashcracker</module>-->
     </modules>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.9</maven.compiler.source>
-        <maven.compiler.target>1.9</maven.compiler.target>
-    </properties>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
