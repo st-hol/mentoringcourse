@@ -19,7 +19,6 @@
         <module>calculatorrefactoring</module>
         <module>circularbuffer</module>
         <module>sportsbettingapp</module>
-<!--        <module>hashcracker</module>-->
     </modules>
 
     <dependencies>
