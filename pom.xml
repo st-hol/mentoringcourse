@@ -19,6 +19,7 @@
         <module>calculatorrefactoring</module>
         <module>circularbuffer</module>
         <module>sportsbettingapp</module>
+        <module>sports-betting-application</module>
     </modules>
 
     <dependencies>
