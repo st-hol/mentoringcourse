@@ -2,20 +2,21 @@ package com.epam.exercises.restaurant.domain;
 
 import java.util.List;
 
+import com.epam.exercises.restaurant.condiments.CondimentType;
 import com.epam.exercises.restaurant.food.Dish;
+import com.epam.exercises.restaurant.food.DishType;
 import com.epam.exercises.restaurant.observer.Observable;
 
 import lombok.Data;
 
-
 @Data
 public class Order extends Observable<Client> {
-    private final String dishName;
-    private final List<String> condiments;
+    private final DishType dishType;
+    private final List<CondimentType> condimentTypes;
 
-    public Order(String dishName, List<String> condiments) {
-        this.dishName = dishName;
-        this.condiments = condiments;
+    public Order(DishType dishType, List<CondimentType> condimentTypes) {
+        this.dishType = dishType;
+        this.condimentTypes = condimentTypes;
     }
 
     @Override

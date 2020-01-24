@@ -2,8 +2,10 @@ package com.epam.exercises.restaurant.food;
 
 
 public class HotDog extends Dish {
+
     public HotDog() {
-        description = "HotDog";
+        dishType = DishType.HOTDOG;
+        description = dishType.getFoodName();
     }
 
     @Override

@@ -4,7 +4,8 @@ package com.epam.exercises.restaurant.food;
 public class Chips extends Dish {
 
     public Chips() {
-        description = "Chips";
+        dishType = DishType.CHIPS;
+        description = dishType.getFoodName();
     }
 
     @Override

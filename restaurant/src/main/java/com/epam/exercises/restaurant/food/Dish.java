@@ -6,14 +6,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Dish {
-    String description = "Unknown";
-    private String name;
-
-
-    public Dish() {
-        //required
-    }
+public abstract class Dish {
+    protected DishType dishType;
+    protected String description;
 
     public double happinessIncrement(double currentHappiness) {
         return currentHappiness;

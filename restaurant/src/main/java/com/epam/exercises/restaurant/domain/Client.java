@@ -16,9 +16,9 @@ public class Client implements Observer<Client> {
     }
 
     private void eat(Dish dish) {
-        System.out.println("Before eating: " + name + "(" + happiness + ")" + " is eating " + dish.getDescription());
+        System.out.println(String.format("Before eating: %s (%f)", name, happiness));
         happiness += dish.happinessIncrement(happiness);
-        System.out.println("After eating: " + name + "(" + happiness + ")");
+        System.out.println(String.format("After eating: %s (%f)", name, happiness));
     }
 
     public void update(Dish dish) {
