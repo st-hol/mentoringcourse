@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" http-equiv='Content-Type'>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <title>home</title>
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" data-toggle="dropdown" href="#">
+                        language
+                    </a>
+                    <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                        <a class="dropdown-item" href="?lang=en">english</a>
+                        <a class="dropdown-item" href="?lang=ru">russian</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div>
+    <div class="row bg-dark">
+        <div class="col-md-12">
+            <p></p>
+            <h2 class="text-center text-light">welcome to sportsbet!</h2>
+            <p class="text-center text-light">sports betting is the activity of predicating sports results and placing a
+                wager on the outcome.</p>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <p class="col-2"></p>
+        <div class="col">
+            <div class="row">
+                <h4><a href="#">login</a> or <a href="#">register </a> to start!</h4>
+            </div>
+            <div class="row border border-primary rounded d-inline-block mt-2">
+                <div>
+                    <p class="bg-primary p-2 text-light font-weight-bold">login</p>
+                    <div class="m-2">
+                        <form action="/login" method="post">
+                            <label>
+                                <input class="border rounded p-1" name="username" placeholder="email" type="text">
+                            </label>
+                            <br>
+                            <label>
+                                <input class="border rounded p-1" name="password" placeholder="password"
+                                       type="password">
+                            </label>
+                            <br>
+                            <input class="bg-primary border rounded text-light" type="submit" value="login">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container border border-primary rounded mt-2 p-0">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link text-light" href="/home">home</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="/events">events</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" data-toggle="dropdown" href="#">
+                        language
+                    </a>
+                    <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                        <a class="dropdown-item" href="?lang=en"/>english</a>
+                        <a class="dropdown-item" href="?lang=ru"/>russian</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link text-light" href="/logout"/>logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container border border-primary rounded mt-2">
+    <div class="row bg-primary">
+        <h6 class="text-center text-light font-weight-normal p-2 pl-4">account details</h6>
+    </div>
+    <form action="/updateAccount" class="mt-3" id="player" method="post">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">name</span>
+            </div>
+            <input class="form-control" minlength="3" name="name" required="required" type="text" value="username">
+        </div>
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">birth</span>
+            </div>
+            <input class="form-control" name="birthDate" required="required" type="date" value="birthDate">
+        </div>
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">account</span>
+            </div>
+            <input class="form-control" minlength="3" name="accountNumber" required="required" type="text"
+                   value="accountNumber">
+        </div>
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">currency</span>
+            </div>
+            <input class="form-control" disabled minlength="3" name="accountNumber" required="required" type="text"
+                   value="UAH">
+        </div>
+        <div class="input-group mt-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text">balance</span>
+            </div>
+            <input class="form-control" disabled minlength="3" name="accountNumber" required="required" type="text"
+                   value="9999999999999999">
+        </div>
+        <input class="bg-primary border border-primary rounded mt-2 mb-2 text-light" type="submit" value="save"/>
+    </form>
+</div>
+
+<div class="container border border-primary rounded mt-2">
+    <div class="row bg-primary">
+        <h6 class="text-center text-light font-weight-normal p-2 pl-4">wagers</h6>
+    </div>
+    <table class="w-100">
+        <tr>
+            <th></th>
+            <th>#</th>
+            <th>event title</th>
+            <th>event type</th>
+            <th>bet type</th>
+            <th>outcome value</th>
+            <th>outcome odd</th>
+            <th>wager amount</th>
+            <th>isWinner</th>
+            <th>isProcessed</th>
+        </tr>
+        <!-- for -->
+        <tr>
+            <td><input class="border border-primary rounded bg-primary text-light" type="button" value="remove"></td>
+            <td>index</td>
+            <td>event.title</td>
+            <td>event.name</td>
+            <td>betType</td>
+            <td>outcome.odd</td>
+            <td>odd</td>
+            <td>amount</td>
+            <td>if</td>
+            <td>if</td>
+        </tr>
+        <!-- for -->
+    </table>
+</div>
+</body>
+</html>
