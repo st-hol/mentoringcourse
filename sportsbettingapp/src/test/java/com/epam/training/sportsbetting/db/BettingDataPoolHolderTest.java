@@ -1,12 +1,12 @@
 package com.epam.training.sportsbetting.db;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
 
 
 @RunWith(PowerMockRunner.class)
@@ -19,41 +19,14 @@ public class BettingDataPoolHolderTest {
     private BettingDataPoolHolder mockedInstance = BettingDataPoolHolder.getInstance();
 
     @Test
-    public void whenGetOutcomeOdds_thenReturnListOfOdds() {
+    public void shouldReturnListOfOddsWhenGetOutcomeOdds() {
         assertThat(mockedInstance.getOutcomeOddsData().get(0).getId(), is(1));
     }
 
     @Test
-    public void whenGetSportEvents_thenReturnListOfEvents() {
+    public void shouldReturnListOfEventsWhenGetSportEvents() {
         assertThat(mockedInstance.getSportEventsData().get(0).getTitle(), is(EVENT_TITLE));
     }
 
 
 }
-
-
-//@RunWith(MockitoJUnitRunner.class)
-//public class BettingDataPoolHolderTest {
-//
-//    @Before
-//    public void setUp() throws Exception {
-//    }
-//
-//    @Test
-//    public void test(){
-//        BettingDataPoolHolder underTest = BettingDataPoolHolder.getInstance();
-//        underTest.getOutcomeOdds().forEach(sportEvent -> System.out.println(sportEvent));
-//        assertTrue(1==1);
-//    }
-//}
-//@RunWith(MockitoJUnitRunner.class)
-//public class MyService_SayHello_Test {
-//    @Mock FileWriter fw;
-//    @Test
-//    public void doSomeService_SayHello() throws Exception {
-//        MyService service = MyService.getInstance();
-//        service.init("Hello!");
-//        service.doSomeService(fw);
-//        verify(fw).write("Hello!");
-//    }
-//}

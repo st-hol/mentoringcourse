@@ -1,14 +1,13 @@
 package com.epam.training.sportsbetting.service;
 
-import com.epam.training.sportsbetting.db.BettingDataPoolHolder;
-import com.epam.training.sportsbetting.domain.*;
-import com.epam.training.sportsbetting.domain.user.Player;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.Assert.assertThat;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,11 +15,22 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.when;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import com.epam.training.sportsbetting.db.BettingDataPoolHolder;
+import com.epam.training.sportsbetting.domain.Bet;
+import com.epam.training.sportsbetting.domain.FootballSportEvent;
+import com.epam.training.sportsbetting.domain.Outcome;
+import com.epam.training.sportsbetting.domain.OutcomeOdd;
+import com.epam.training.sportsbetting.domain.Result;
+import com.epam.training.sportsbetting.domain.SportEvent;
+import com.epam.training.sportsbetting.domain.Wager;
+import com.epam.training.sportsbetting.domain.user.Player;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ApplicationService.class, BettingDataPoolHolder.class})
@@ -31,7 +41,6 @@ public class ApplicationServiceTest {
     private static final int OUTCOME_ID = 1;
     private static final BigDecimal TEST_OUTCOME_VALUE = BigDecimal.TEN;
     private static final BigDecimal WAGER_AMOUNT = BigDecimal.ONE;
-
 
     private ApplicationService serviceUnderTest = ApplicationService.getInstance();
     private BettingDataPoolHolder bettingDataPoolHolder;
@@ -46,7 +55,7 @@ public class ApplicationServiceTest {
     }
 
     @Test
-    public void givenUserChoiceForExistingOdd_whenFindOutcomeOddByNumber_thenReturnOddWithGivenId() {
+    public void shouldReturnOddWithGivenIdWhenUserChoiceIsForExistingOdd() {
         when(bettingDataPoolHolder.getOutcomeOddsData())
                 .thenReturn(new ArrayList<>(Collections.singletonList(new OutcomeOdd() {{
                     setId(OUTCOME_ID);
@@ -56,21 +65,21 @@ public class ApplicationServiceTest {
     }
 
     @Test
-    public void givenUserChoiceForNonExistingOdd_whenFindOutcomeOddByNumber_thenReturnNull() {
+    public void shouldReturnNullWhenUserChoiceIsForNonExistingOdd() {
         when(bettingDataPoolHolder.getOutcomeOddsData())
                 .thenReturn(Collections.emptyList());
         assertThat(serviceUnderTest.findOutcomeOddByNumber(USER_CHOICE), is(nullValue()));
     }
 
     @Test
-    public void whenGetSportEvents_thenReturnListOfEvents() {
+    public void shouldReturnListOfEventsWhenGetSportEvents() {
         when(bettingDataPoolHolder.getSportEventsData())
                 .thenReturn(Collections.singletonList(populateSportEvent()));
         assertThat(serviceUnderTest.getSportEventsData().get(0).getTitle(), is(TEST_EVENT));
     }
 
     @Test
-    public void givenParams_whenCreateWager_thenBuildWager() {
+    public void shouldBuildWagerWhenCreateWagerWithParams() {
         Wager actual = serviceUnderTest.createWager(
                 populatePlayer(),
                 WAGER_AMOUNT,
@@ -82,7 +91,7 @@ public class ApplicationServiceTest {
     }
 
     @Test
-    public void givenSportEvents_whenGenerateResult_thenReturnResultForWinner() {
+    public void shouldReturnResultForWinnerWhenGenerateResult() {
         List<SportEvent> sportEvents = Collections.singletonList(populateSportEvent());
         sportEvents.get(0).setBets(populateBets());
         Random random = mock(Random.class);
@@ -99,7 +108,7 @@ public class ApplicationServiceTest {
     }
 
     @Test
-    public void givenTwoNumbers_whenCalculateTotalWonSum_thenCalculateResult(){
+    public void shouldCalculateResultWhenCalculateTotalWonSumWithTwoNumbers() {
         BigDecimal actual = serviceUnderTest.calculateTotalWonSum(BigDecimal.ONE,BigDecimal.TEN);
         assertThat(actual, is(BigDecimal.valueOf(9)));
 
